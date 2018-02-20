@@ -1,7 +1,7 @@
-var url;
-chrome.tabs.getSelected(null,function(tab) {
-      url = tab.url;
-});
+//var url;
+//chrome.tabs.getSelected(null,function(tab) {
+//      url = tab.url;
+//});
 
 function getCurrentTabUrl(callback) {
   var queryInfo = {
@@ -21,30 +21,28 @@ function modifyDOM() {
 	return document.body.innerHTML;
 }
 
-$(function() {
-	document.getElementById("test").addEventListener('click', () => {
-		console.log("Popup DOM fully loaded and parsed");
-
-		chrome.tabs.executeScript({
-			code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
-		}, (results) => {
-			console.log(results[0]);
-			var doc = results[0];
-			var $dom = $($.parseHTML(results[0]));
-			console.log($dom);
-			title = $dom.find('h1.title').text().split('Title:')[1];
-			authors = $dom.find('div.authors').text().split('Authors:')[1];
-			authors = authors.replace(/\n/g, '');
-			//alert(title + '\n' + authors);
-			console.log(title);
-			console.log(authors);
-			console.log(url);
-			$('#info').html([title, authors, url].join('\n'));
-			
-			//alert(doc.querySelectorAll('h1, .title, .mathjax'));
-		});
-	});
-});
+//$(function() {
+//	document.getElementById("test").addEventListener('click', () => {
+//		console.log("Popup DOM fully loaded and parsed");
+//
+//		chrome.tabs.executeScript({
+//			code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
+//		}, (results) => {
+//			console.log(results[0]);
+//			var doc = results[0];
+//			var $dom = $($.parseHTML(results[0]));
+//			console.log($dom);
+//			title = $dom.find('h1.title').text().split('Title:')[1];
+//			authors = $dom.find('div.authors').text().split('Authors:')[1];
+//			authors = authors.replace(/\n/g, '');
+//			//alert(title + '\n' + authors);
+//			console.log(title);
+//			console.log(authors);
+//			console.log(url);
+//			$('#info').html([title, authors, url].join('\n'));
+//		});
+//	});
+//});
 
 function copyToClipboard(text) {
     const input = document.createElement('input');
