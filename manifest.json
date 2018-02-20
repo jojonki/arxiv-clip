@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "arXiv clip",
+  "description": "",
+  "version": "1.0",
+	"browser_action": {
+		"default_icon": {                    // optional
+			"16": "icon.png",           // optional
+			"24": "icon.png",           // optional
+			"32": "icon.png"            // optional
+		},
+		"default_title": "arXiv Clip",      // optional; shown in tooltip
+		"default_popup": "popup.html"        // optional
+	},
+  "permissions": [
+		"tabs",
+		"<all_urls>",
+		"https://arxiv.org/"
+  ]
+}
