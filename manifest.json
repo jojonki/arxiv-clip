@@ -3,7 +3,7 @@
   "name": "arXiv clip",
   "short_:name": "arXiv clip",
   "description": "",
-  "version": "1.0",
+  "version": "1.1",
   "background": { "scripts": ["background.js"] },
 	"page_action": {
 		"default_icon": {
