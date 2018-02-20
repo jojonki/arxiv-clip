@@ -1,17 +1,18 @@
 {
   "manifest_version": 2,
   "name": "arXiv clip",
+  "short_:name": "arXiv clip",
   "description": "",
   "version": "1.0",
   "background": { "scripts": ["background.js"] },
 	"page_action": {
-		"default_icon": { // optional
-			"16": "icon.png", // optional
-			"24": "icon.png", // optional
-			"32": "icon.png"  // optional
+		"default_icon": {
+			"16": "icon.png",
+			"24": "icon.png",
+			"32": "icon.png"
 		},
-		"default_title": "arXiv clip", // optional; shown in tooltip
-		"default_popup": "popup.html"  // optional
+		"default_title": "arXiv clip",
+		"default_popup": "popup.html"
 	},
   "permissions": [
 		"tabs",
