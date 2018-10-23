@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
 		}, (results) => {
 			var $dom = $($.parseHTML(results[0]));
-			title = $dom.find('h1.title').text().split('Title:\n')[1];
+			title = $dom.find('h1.title').text().split('Title:')[1];
 			authors = $dom.find('div.authors').text().split('Authors:')[1];
 			authors = authors.replace(/\n/g, '');
 
