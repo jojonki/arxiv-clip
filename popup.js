@@ -43,8 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			title = $dom.find('h1.title').text().split('Title:')[1];
 			authors = $dom.find('div.authors').text().split('Authors:')[1];
 			authors = authors.replace(/\n/g, '');
+			comment = $dom.find('div.metatable').find('.comments').text();
+			if (comment != '') {
+				info = [title, authors, comment, url].join('\n');
+			} else {
+				info = [title, authors, url].join('\n');
+			}
 
-			info = [title, authors, url].join('\n');
 			copyToClipboard(info);
 			$('#result').text('copied!');
 
