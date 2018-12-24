@@ -9,7 +9,8 @@ You can easily clip paper's information by just clicking the icon!
 
 ## Clip sample
 ```
-Generative Adversarial Networks 
-Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio 
-https://arxiv.org/abs/1406.2661
+Context-Aware Dialog Re-Ranking for Task-Oriented Dialog Systems
+Junki Ohmura, Maxine Eskenazi    
+Accepted in IEEE SLT 2018. 8 pages, 3 figures
+https://arxiv.org/abs/1811.11430
 ```
