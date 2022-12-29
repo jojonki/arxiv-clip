@@ -67,7 +67,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     switch (request.message) {
         case 'retrievePaperInfo':
             return retrievePaperInfo(sendResponse);
-
         default:
             sendResponse({ data: 'Invalid arguments' });
             break;

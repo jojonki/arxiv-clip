@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.runtime.sendMessage(sendMessage, function (response) {
         let info = response.data;
         copyToClipboard(info);
-        $('#result').text('copied!');
+        document.getElementById("result").textContent = "Copied information from " + info;
 
         // hide popup automatically
         setTimeout(function () {
