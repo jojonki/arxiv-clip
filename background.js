@@ -24,6 +24,16 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+function openTab(url, sendResponse) {
+  chrome.tabs.create({ url: url }, function (tab) {
+    chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+      if (info.status === "complete") {
+        chrome.tabs.onUpdated.removeListener(listener);
+      }
+    });
+  });
+}
+
 function _retrievePaperInfo(arxiv_url) {
   let abst = document.getElementById("abs");
   let title = abst.querySelector("h1").textContent.split("Title:")[1].trim();
@@ -46,6 +56,22 @@ function _retrievePaperInfo(arxiv_url) {
   return info;
 }
 
+function executePaperInfoRetrieval(tab, sendResponse) {
+  chrome.scripting.executeScript(
+    {
+      target: { tabId: tab.id },
+      func: _retrievePaperInfo,
+      args: [tab.url],
+    },
+    (results) => {
+      if (results.length > 0) {
+        console.log("sendResponse: " + results[0].result);
+        sendResponse({ data: results[0].result });
+      }
+    }
+  );
+}
+
 function retrievePaperInfo(sendResponse) {
   chrome.tabs.query(
     {
@@ -53,19 +79,15 @@ function retrievePaperInfo(sendResponse) {
       lastFocusedWindow: true,
     },
     function (tabs) {
-      chrome.scripting.executeScript(
-        {
-          target: { tabId: tabs[0].id },
-          func: _retrievePaperInfo,
-          args: [tabs[0].url],
-        },
-        (results) => {
-          if (results.length > 0) {
-            console.log("sendResponse: " + results[0].result);
-            sendResponse({ data: results[0].result });
-          }
-        }
-      );
+      var url = tabs[0].url;
+      if (url.startsWith("https://arxiv.org/pdf/")) {
+        // if the page is a pdf, just open the entrance page.
+        url = url.replace(".pdf", "");
+        url = url.replace("pdf", "abs");
+        openTab(url, sendResponse);
+      } else {
+        executePaperInfoRetrieval(tabs[0], sendResponse);
+      }
     }
   );
   return true;
